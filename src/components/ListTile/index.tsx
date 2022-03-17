@@ -17,12 +17,12 @@ interface ListTileProps {
   onTap: () => void;
 }
 
-export const ListTile = ({ title, subtitle, leading, onTap}: ListTileProps) => {
+export const ListTile = ({ title, subtitle, leading, onTap }: ListTileProps) => {
   return (
     <TouchableOpacity onPress={onTap}>
       <Container>
         <LeadingContainer>
-          <LeadingContent>
+          <LeadingContent style={{ backgroundColor: 'red' }}>
             <Leading>{leading.length !== 1 ? leading.slice(0, 3) : leading.padEnd(3, '.0')}</Leading>
           </LeadingContent>
         </LeadingContainer>

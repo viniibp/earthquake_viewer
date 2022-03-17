@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { Text } from 'react-native';
 import ListTile from '../components/ListTile';
 import { getEarthquakes } from '../services/api';
-import { Container, Header, OrderOption } from './styles';
+import { Container, Header, OrderOption, ListView } from './styles';
 
 interface IEarthquake {
   properties: {
@@ -76,14 +76,16 @@ export const Home = () => {
           <Text>Minor Mag</Text>
         </OrderOption>
       </Header>
-      {earthquakes.map(eq => <ListTile
-        title={eq.properties.place}
-        subtitle={new Date(eq.properties.time).toDateString()}
-        leading={eq.properties.mag.toString()}
-        onTap={() => {
-        }}
-        key={eq.id}
-      />)}
+      <ListView>
+        {earthquakes.map(eq => <ListTile
+          title={eq.properties.place}
+          subtitle={new Date(eq.properties.time).toDateString()}
+          leading={eq.properties.mag.toString()}
+          onTap={() => {
+          }}
+          key={eq.id}
+        />)}
+      </ListView>
     </Container>
   );
 };
