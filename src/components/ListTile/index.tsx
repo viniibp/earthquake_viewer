@@ -18,11 +18,21 @@ interface ListTileProps {
 }
 
 export const ListTile = ({ title, subtitle, leading, onTap }: ListTileProps) => {
+
+  const colorMag = () => {
+
+    const mag = parseFloat(leading);
+    if (mag <= 1) return '#2AAD73';
+    if (mag > 1 && mag <= 3) return '#E6D468';
+    if (mag > 3 && mag < 5) return '#E07639';
+    else return '#D2383F';
+  };
+
   return (
     <TouchableOpacity onPress={onTap}>
       <Container>
         <LeadingContainer>
-          <LeadingContent style={{ backgroundColor: 'red' }}>
+          <LeadingContent style={{ backgroundColor: colorMag() }}>
             <Leading>{leading.length !== 1 ? leading.slice(0, 3) : leading.padEnd(3, '.0')}</Leading>
           </LeadingContent>
         </LeadingContainer>

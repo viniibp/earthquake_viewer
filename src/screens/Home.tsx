@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import { Modal, Pressable, Text } from 'react-native';
 import ListTile from '../components/ListTile';
+import CustomModal from '../components/Modal';
 import { getEarthquakes } from '../services/api';
 import { Container, Header, OrderOption, ListView } from './styles';
 
@@ -20,9 +21,11 @@ interface IEarthquake {
 export const Home = () => {
   const [earthquakes, setEartquakes] = useState<IEarthquake[]>([]);
   const [orderBy, setOrderBy] = useState<keyof typeof OrderBy>('MostRecentDate');
+  const [modalVisible, setModalVisible] = useState(false);
+
 
   useEffect(() => {
-    getEarthquakes().then((eqs: IEarthquake[]) => setEartquakes(eqs));
+    getEarthquakes().then(setEartquakes);
   }, []);
 
   const Reorganize = (order: keyof typeof OrderBy) => {
@@ -59,21 +62,10 @@ export const Home = () => {
   if (!earthquakes) return null;
   else return (
     <Container>
+      <CustomModal visible={modalVisible} setVisible={setModalVisible} setOrderBy={setOrderBy} />
       <Header>
-        <OrderOption onPress={() => setOrderBy('MostRecentDate')}>
-          <Text>Most Recent Date</Text>
-        </OrderOption>
-
-        <OrderOption onPress={() => setOrderBy('LeastRecentDate')}>
-          <Text>Least Recent Date</Text>
-        </OrderOption>
-
-        <OrderOption onPress={() => setOrderBy('GreaterMag')}>
-          <Text>Greater Mag</Text>
-        </OrderOption>
-
-        <OrderOption onPress={() => setOrderBy('MinorMag')}>
-          <Text>Minor Mag</Text>
+        <OrderOption onPress={() => setModalVisible(true)}>
+          <Text>🎃</Text>
         </OrderOption>
       </Header>
       <ListView>
@@ -92,7 +84,7 @@ export const Home = () => {
 
 export default Home;
 
-enum OrderBy {
+export enum OrderBy {
   MostRecentDate,
   LeastRecentDate,
   GreaterMag,

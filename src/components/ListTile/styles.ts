@@ -4,7 +4,7 @@ export const Container = styled.View`
   flex: 1;
   flex-direction: row;
   margin: 3px 5px;
-  background-color: ${({ theme }) => theme.COLORS.ALERT};
+  background-color: #C8D1DF;
   border-radius: 4px;
 `;
 
@@ -22,7 +22,6 @@ export const LeadingContent = styled.View`
   padding: 8px;
   width: 49px;
   height: 49px;
-  border: 1px solid #07090D;
   background-color: ${({ theme }) => theme.COLORS.ALERT};
 `;
 
@@ -38,10 +37,10 @@ export const Title = styled.Text`
 
 export const Subitle = styled.Text`
   font-size: 14px;
-  color: ${({ theme }) => theme.COLORS.TEXT};
+  color: #00327A;
 `;
 
 export const Leading = styled.Text`
   font-size: 22px;
-  color: ${({ theme }) => theme.COLORS.TEXT};
+  color: #233561;
 `;
